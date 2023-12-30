@@ -29,6 +29,7 @@
 
             <Channel LogLevel="4">LoggingManager</Channel>
             <Channel LogLevel="4">Config</Channel>
+            <Channel LogLevel="4">DBContext</Channel>
         </LoggingChannels>
     </Logger>
 </FirewatchConfig>

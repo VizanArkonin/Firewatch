@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 
 using Firewatch.Database.Models;
+using Firewatch.Core.Logging;
 
 namespace Firewatch.Database;
 
@@ -14,76 +13,31 @@ namespace Firewatch.Database;
 /// </summary>
 public class FirewatchContext : DbContext
 {
-    public string DbPath { get; }
+    private LoggingChannel  Log         { get; set; }
+    public string           DbPath      { get; }
 
-    public DbSet<Metric> Metrics { get; set; }
+    public DbSet<Metric>    Metrics     { get; set; }
 
     public FirewatchContext()
     {
         this.DbPath = System.IO.Path.Join(Environment.CurrentDirectory, "firewatch.db");
     }
 
+    public void SetLogger(LoggingChannel loggingChannel) => Log = loggingChannel;
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlite($"Data Source={DbPath}");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Metric>().HasData(
-            new Metric
-            {
-                Id = 1,
-                Name = "Percent",
-                Description = "Percentage of resource used",
-                UnitOfMeasurement = "%"
-            },
-            new Metric
-            {
-                Id = 2,
-                Name = "Megabytes Used",
-                Description = "Amount of Megabytes used by resource",
-                UnitOfMeasurement = "mB"
-            },
-            new Metric
-            {
-                Id = 3,
-                Name = "Total Megabytes available",
-                Description = "Total amount of Megabytes available to resource",
-                UnitOfMeasurement = "mB"
-            },
-            new Metric
-            {
-                Id = 4,
-                Name = "Bytes sent",
-                Description = "Amount of bytes, sent by given resource",
-                UnitOfMeasurement = "b"
-            },
-            new Metric
-            {
-                Id = 5,
-                Name = "Bytes received",
-                Description = "Amount of bytes, received by given resource",
-                UnitOfMeasurement = "b"
-            },
-            new Metric
-            {
-                Id = 6,
-                Name = "Bytes sent per second",
-                Description = "The speed of transmission for given resource",
-                UnitOfMeasurement = "b/sec"
-            },
-            new Metric
-            {
-                Id = 7,
-                Name = "Bytes received per second",
-                Description = "The speed of reception for given resource",
-                UnitOfMeasurement = "b/sec"
-            },
-            new Metric
-            {
-                Id = 8,
-                Name = "Temperature",
-                Description = "Resource temperature",
-                UnitOfMeasurement = "°C"
-            }
+            new Metric(1, "Percent", "Percentage of resource used", "%"),
+            new Metric(2, "Megabytes Used", "Amount of Megabytes used by resource", "mB"),
+            new Metric(3, "Total Megabytes available", "Total amount of Megabytes available to resource", "mB"),
+            new Metric(4, "Bytes sent", "Amount of bytes, sent by given resource", "b"),
+            new Metric(5, "Bytes received", "Amount of bytes, received by given resource", "b"),
+            new Metric(6, "Bytes sent per second", "The speed of transmission for given resource", "b/sec"),
+            new Metric(7, "Bytes received per second", "The speed of reception for given resource", "b/sec"),
+            new Metric(8, "Temperature", "Resource temperature", "°C")
         );
     }
 }

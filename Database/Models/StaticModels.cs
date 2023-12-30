@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Firewatch.Database.Models;
 
 /// <summary>
@@ -5,8 +7,19 @@ namespace Firewatch.Database.Models;
 /// </summary>
 public class Metric
 {
-    public int      Id                  { get; set; }
-    public string   Name                { get; set; }
-    public string   Description         { get; set; }
-    public string   UnitOfMeasurement   { get; set; }
+    [Key]
+    public int      Id                  { get; private set; }
+    public string   Name                { get; private set; }
+    public string   Description         { get; private set; }
+    public string   UnitOfMeasurement   { get; private set; }
+
+    public Metric() {}
+
+    public Metric(int id, string name, string description, string untOfMeasurement)
+    {
+        Id = id;
+        Name = name;
+        Description = description;
+        UnitOfMeasurement = untOfMeasurement;
+    }
 }
