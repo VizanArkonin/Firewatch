@@ -1,0 +1,34 @@
+<FirewatchConfig>
+    <EnableCPUMonitoring>true</EnableCPUMonitoring>
+
+    <EnableRAMMonitoring>true</EnableRAMMonitoring>
+    
+    <EnableNetworkMonitoring>true</EnableNetworkMonitoring>
+    <NetworkInterfacesToMonitor>end0</NetworkInterfacesToMonitor>
+
+    <PollingRateInSeconds>10</PollingRateInSeconds>
+
+    <Logger>
+        <File   WriteToFile="true"
+                LogsDirectory="Logs"
+                LogfilePrefix="firewatch_log"
+                MaximumLogSizeKB="4120">
+        </File>
+        <GlobalLogLevelOverride>0</GlobalLogLevelOverride>
+        <LoggingChannels>
+            <!--
+                public enum LoggingLevel {
+                    NONE = 0,
+                    ERROR = 1,
+                    WARNING = 2,
+                    INFO = 3,
+                    DEBUG = 4,
+                    TRACE = 4
+                }
+            -->
+
+            <Channel LogLevel="4">LoggingManager</Channel>
+            <Channel LogLevel="4">Config</Channel>
+        </LoggingChannels>
+    </Logger>
+</FirewatchConfig>
