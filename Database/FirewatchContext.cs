@@ -18,6 +18,7 @@ public class FirewatchContext : DbContext
 
     /// Static tables
     public DbSet<Metric>            Metrics             { get; set; }
+    public DbSet<Resource>          Resources           { get; set; }
 
     /// Dynamic tables
     public DbSet<TickTelemetry>     Telemetry           { get; set; }
@@ -32,7 +33,13 @@ public class FirewatchContext : DbContext
 
     public void SetLogger(LoggingChannel loggingChannel) => Log = loggingChannel;
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlite($"Data Source={DbPath}");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite($"Data Source={DbPath}");
+        // Debugging options - enable full trace and direct it to a logger
+        //optionsBuilder.EnableSensitiveDataLogging(true);
+        //optionsBuilder.LogTo(Log.Trace);
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -45,6 +52,12 @@ public class FirewatchContext : DbContext
             new Metric(6, "Bytes sent per second", "The speed of transmission for given resource", "b/sec"),
             new Metric(7, "Bytes received per second", "The speed of reception for given resource", "b/sec"),
             new Metric(8, "Temperature", "Resource temperature", "°C")
+        );
+
+        modelBuilder.Entity<Resource>().HasData(
+            new Resource(1, "CPU", "System CPU. Static resource"),
+            new Resource(2, "RAM", "System RAM. Static resource"),
+            new Resource(3, "Disk", "System Disk. Static resource")
         );
     }
 }

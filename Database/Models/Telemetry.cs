@@ -11,9 +11,16 @@ namespace Firewatch.Database.Models;
 public abstract class TelemetryBase
 {
     [Key]
-    public int          EntryId     { get; private set; }
+    [Column(Order = 1)]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int          EntryId     { get; set; }
+    [Column(Order = 2)]
+    public int          ResourceId  { get; set; }
+    [Column(Order = 3)]
     public int          MetricId    { get; set; }
+    [Column(Order = 4)]
     public float        Value       { get; set; }
+    [Column(Order = 5)]
     public DateTime     Timestamp   { get; set; }
 }
 

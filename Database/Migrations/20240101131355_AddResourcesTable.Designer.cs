@@ -3,6 +3,7 @@ using System;
 using Firewatch.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Firewatch.Database.Migrations
 {
     [DbContext(typeof(FirewatchContext))]
-    partial class FirewatchContextModelSnapshot : ModelSnapshot
+    [Migration("20240101131355_AddResourcesTable")]
+    partial class AddResourcesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
@@ -21,24 +24,19 @@ namespace Firewatch.Database.Migrations
                 {
                     b.Property<int>("EntryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("MetricId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(3);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ResourceId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(2);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Timestamp")
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(5);
+                        .HasColumnType("TEXT");
 
                     b.Property<float>("Value")
-                        .HasColumnType("REAL")
-                        .HasColumnOrder(4);
+                        .HasColumnType("REAL");
 
                     b.HasKey("EntryId");
 
@@ -49,24 +47,19 @@ namespace Firewatch.Database.Migrations
                 {
                     b.Property<int>("EntryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("MetricId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(3);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ResourceId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(2);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Timestamp")
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(5);
+                        .HasColumnType("TEXT");
 
                     b.Property<float>("Value")
-                        .HasColumnType("REAL")
-                        .HasColumnOrder(4);
+                        .HasColumnType("REAL");
 
                     b.HasKey("EntryId");
 
@@ -77,23 +70,19 @@ namespace Firewatch.Database.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(3);
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(2);
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UnitOfMeasurement")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(4);
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -162,24 +151,19 @@ namespace Firewatch.Database.Migrations
                 {
                     b.Property<int>("EntryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("MetricId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(3);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ResourceId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(2);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Timestamp")
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(5);
+                        .HasColumnType("TEXT");
 
                     b.Property<float>("Value")
-                        .HasColumnType("REAL")
-                        .HasColumnOrder(4);
+                        .HasColumnType("REAL");
 
                     b.HasKey("EntryId");
 
@@ -190,18 +174,7 @@ namespace Firewatch.Database.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(3);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(2);
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -210,21 +183,15 @@ namespace Firewatch.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Description = "System CPU. Static resource",
-                            Name = "CPU"
+                            Id = 1
                         },
                         new
                         {
-                            Id = 2,
-                            Description = "System RAM. Static resource",
-                            Name = "RAM"
+                            Id = 2
                         },
                         new
                         {
-                            Id = 3,
-                            Description = "System Disk. Static resource",
-                            Name = "Disk"
+                            Id = 3
                         });
                 });
 
@@ -232,24 +199,19 @@ namespace Firewatch.Database.Migrations
                 {
                     b.Property<int>("EntryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("MetricId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(3);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ResourceId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(2);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Timestamp")
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(5);
+                        .HasColumnType("TEXT");
 
                     b.Property<float>("Value")
-                        .HasColumnType("REAL")
-                        .HasColumnOrder(4);
+                        .HasColumnType("REAL");
 
                     b.HasKey("EntryId");
 

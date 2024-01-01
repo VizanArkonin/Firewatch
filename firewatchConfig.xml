@@ -27,9 +27,14 @@
                 }
             -->
 
+            <Channel LogLevel="4">Firewatch</Channel>
             <Channel LogLevel="4">LoggingManager</Channel>
             <Channel LogLevel="4">Config</Channel>
-            <Channel LogLevel="4">DBContext</Channel>
+            <Channel LogLevel="5">DBContext</Channel>
+
+            <Channel LogLevel="4">TickProcessor</Channel>
+
+            <Channel LogLevel="5">CpuMonitor</Channel>
         </LoggingChannels>
     </Logger>
 </FirewatchConfig>

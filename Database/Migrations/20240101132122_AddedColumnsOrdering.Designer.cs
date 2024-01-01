@@ -3,6 +3,7 @@ using System;
 using Firewatch.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Firewatch.Database.Migrations
 {
     [DbContext(typeof(FirewatchContext))]
-    partial class FirewatchContextModelSnapshot : ModelSnapshot
+    [Migration("20240101132122_AddedColumnsOrdering")]
+    partial class AddedColumnsOrdering
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
