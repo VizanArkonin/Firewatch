@@ -13,10 +13,17 @@ namespace Firewatch.Database;
 /// </summary>
 public class FirewatchContext : DbContext
 {
-    private LoggingChannel  Log         { get; set; }
-    public string           DbPath      { get; }
+    private LoggingChannel          Log                 { get; set; }
+    public string                   DbPath              { get; }
 
-    public DbSet<Metric>    Metrics     { get; set; }
+    /// Static tables
+    public DbSet<Metric>            Metrics             { get; set; }
+
+    /// Dynamic tables
+    public DbSet<TickTelemetry>     Telemetry           { get; set; }
+    public DbSet<HourlyTelemetry>   HourlyTelemetry     { get; set; }
+    public DbSet<DailyTelemetry>    DailyTelemetry      { get; set; }
+    public DbSet<MonthlyTelemetry>  MonthlyTelemetry    { get; set; }
 
     public FirewatchContext()
     {
